@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "origin": "additional",
+  "title": "Ajouts proposés — hors document original",
+  "author": "Propositions générées par IA pour cette version ; à relire par l’auteur du jeu.",
+  "notes": [
+    "Ces 20 questions ne figurent pas dans le PDF.",
+    "Ce paquet est désactivé par défaut et ne modifie jamais questions.original.json."
+  ],
+  "questions": [
+    {
+      "id": "ajout-ouverture-001",
+      "category": "ouverture",
+      "text": "Quelle petite dépense améliore vraiment ton quotidien ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-ouverture-002",
+      "category": "ouverture",
+      "text": "Si ton humeur du jour était une météo, ce serait laquelle ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-ouverture-003",
+      "category": "ouverture",
+      "text": "Quel objet à moins de dix euros te rend souvent service ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-ouverture-004",
+      "category": "ouverture",
+      "text": "Quel endroit gratuit te fait du bien ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-ouverture-005",
+      "category": "ouverture",
+      "text": "Quel petit rituel aimerais-tu partager avec quelqu’un ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-intermediaire-001",
+      "category": "intermediaire",
+      "text": "Qu’est-ce que le fait de parler d’argent provoque chez toi ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-intermediaire-002",
+      "category": "intermediaire",
+      "text": "Sur quoi acceptes-tu de dépenser davantage sans le regretter ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-intermediaire-003",
+      "category": "intermediaire",
+      "text": "Quel conseil sur la réussite as-tu décidé de ne plus suivre ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-intermediaire-004",
+      "category": "intermediaire",
+      "text": "À quel moment t’es-tu senti·e écouté·e pour la dernière fois ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-intermediaire-005",
+      "category": "intermediaire",
+      "text": "Qu’aimerais-tu pouvoir demander plus facilement à tes proches ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-deep-001",
+      "category": "deep",
+      "text": "Quelle idée de la sécurité financière as-tu héritée de ton enfance ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-deep-002",
+      "category": "deep",
+      "text": "Quel compromis refuses-tu de faire, même pour gagner plus ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-deep-003",
+      "category": "deep",
+      "text": "Qu’aimerais-tu transmettre qui ne s’achète pas ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-deep-004",
+      "category": "deep",
+      "text": "Quelle partie de toi aimerais-tu accueillir avec plus de douceur ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-deep-005",
+      "category": "deep",
+      "text": "Qu’est-ce que tu aimerais que tes proches comprennent sans que tu aies à le justifier ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-miam-001",
+      "category": "miam",
+      "text": "Quel geste te fait te sentir désiré·e, sans qu’un mot soit prononcé ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-miam-002",
+      "category": "miam",
+      "text": "Comment préfères-tu dire à quelqu’un que tu as envie de te rapprocher ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-miam-003",
+      "category": "miam",
+      "text": "Quelle place l’humour a-t-il dans ta façon de séduire ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-miam-004",
+      "category": "miam",
+      "text": "Comment aimerais-tu qu’on te demande si un rapprochement te convient ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    },
+    {
+      "id": "ajout-miam-005",
+      "category": "miam",
+      "text": "Quelle ambiance te permet de te sentir à l’aise pour parler de tes envies ?",
+      "tags": [],
+      "minPlayers": 2,
+      "enabled": true
+    }
+  ]
+}

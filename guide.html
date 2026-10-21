@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#f8f9fa">
+<title>Personnaliser le jeu — cardz</title><link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./assets/vendor/bootstrap/bootstrap.min.css"><link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100">
+<a class="visually-hidden-focusable position-absolute top-0 start-0 p-3 bg-white border z-3" href="#main">Aller au contenu</a>
+<header class="navbar bg-body border-bottom"><div class="container py-2"><a class="navbar-brand fw-bold" href="./index.html">cardz</a><a class="btn btn-outline-secondary btn-sm" href="./index.html">Retour au jeu</a></div></header>
+<main id="main" class="container py-4 flex-grow-1"><div class="row justify-content-center"><article class="col-lg-10 col-xl-9 guide">
+<span class="small text-uppercase text-body-secondary fw-semibold">L’ATELIER / CONFIGURATION V1</span>
+<h1 class="mb-4">Votre jeu.<br>Vos règles.</h1>
+<p class="lead">Les cartes sont dans des fichiers JSON. Les règles aussi. Modifiez-les, enregistrez-les, publiez-les : le jeu les relit à son prochain chargement. Aucune compilation.</p>
+<p class="alert alert-info">Le jeu se joue autour d’un seul écran. Il n’y a ni compte, ni salle multijoueur à distance, ni serveur de données. Les questions publiées sur GitHub Pages sont publiques ; vos réponses personnelles n’ont pas leur place dans ces fichiers.</p>
+<h2 class="h4 mt-5 mb-3">01. Publier sur GitHub Pages</h2>
+<ol><li>Décompressez le paquet et créez un dépôt <strong>public</strong> sur GitHub.</li><li>Chargez le <strong>contenu du dossier cardz</strong> avec ses sous-dossiers. Le fichier <code>index.html</code> doit être à la racine du dépôt, avec <code>config.json</code> et <code>.nojekyll</code>.</li><li>Dans <strong>Settings → Pages</strong>, choisissez <strong>Deploy from a branch</strong>, puis <strong>main</strong> et <strong>/(root)</strong>. Enregistrez.</li><li>Attendez la publication et ouvrez le lien affiché par GitHub.</li></ol>
+<p class="small text-body-secondary">Les chemins relatifs permettent aussi une adresse de projet comme utilisateur.github.io/cardz/. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site" rel="noreferrer">Documentation officielle GitHub Pages ↗</a></p>
+<p>Pour essayer localement, servez ce dossier avec un serveur statique, par exemple le serveur HTTP intégré à Python, puis ouvrez son adresse localhost. Le double clic sur le HTML ne suffit pas : les navigateurs bloquent la lecture des JSON et des modules depuis <code>file://</code>.</p>
+<h2 class="h4 mt-5 mb-3">02. Où changer quoi ?</h2>
+<div class="table-responsive mb-3"><table class="table table-bordered table-striped align-middle"><thead><tr><th>Fichier</th><th>Son rôle</th></tr></thead><tbody>
+<tr><td><a href="./config.json"><code>config.json</code></a></td><td>Règles, types, jeux, ratios, sources et clôture.</td></tr>
+<tr><td><a href="./data/questions.original.json"><code>questions.original.json</code></a></td><td>Les 204 entrées du document source, avec provenance et transcription.</td></tr>
+<tr><td><a href="./data/questions.additional.json"><code>questions.additional.json</code></a></td><td>20 propositions IA séparées, désactivées par défaut. Vous pouvez les remplacer.</td></tr>
+<tr><td><code>config.schema.json</code><br><code>questions.schema.json</code></td><td>Aide à la validation dans un éditeur compatible avec JSON Schema.</td></tr>
+<tr><td><a href="./README.md"><code>README.md</code></a></td><td>Instructions détaillées, architecture et limites de confidentialité.</td></tr>
+</tbody></table></div>
+<p>Utilisez un éditeur de texte ou l’éditeur GitHub. Le JSON exige des guillemets doubles, aucune virgule après le dernier élément et aucun commentaire. Une erreur s’affiche dans le jeu, avec le champ ou le fichier concerné.</p>
+<h2 class="h4 mt-5 mb-3">03. Ajuster les ratios</h2>
+<p><code>ratioStages</code> contient une liste de plages. <code>from</code> et <code>to</code> sont inclusifs ; les plages commencent à 1 et se suivent sans trou ni chevauchement. <code>weights</code> associe un poids à chaque identifiant de type.</p>
+<div class="table-responsive mb-3"><table class="table table-bordered table-striped align-middle"><thead><tr><th>Cartes</th><th>Ouverture</th><th>Intermédiaire</th><th>Deep</th><th>Miam</th></tr></thead><tbody>
+<tr><td>1</td><td>100</td><td>0</td><td>0</td><td>0</td></tr><tr><td>2–10</td><td>80</td><td>20</td><td>0</td><td>0</td></tr><tr><td>11–25</td><td>20</td><td>70</td><td>10</td><td>0</td></tr><tr><td>26–40</td><td>0</td><td>70</td><td>20</td><td>10</td></tr><tr><td>41–50</td><td>0</td><td>30</td><td>50</td><td>20</td></tr>
+</tbody></table></div>
+<p class="small text-body-secondary">Ce tableau rappelle les valeurs initiales du document ; le jeu utilise toujours les valeurs actuelles de <code>config.json</code>.</p>
+<pre class="bg-body border rounded p-3"><code>{
+  "from": 11,
+  "to": 25,
+  "weights": {
+    "ouverture": 20,
+    "intermediaire": 70,
+    "deep": 10,
+    "miam": 0
+  }
+}</code></pre>
+<p>Les poids sont relatifs : 2 et 8 donnent les mêmes chances que 20 et 80. Il faut un poids positif par plage pour chaque jeu. Les types absents du jeu ou épuisés sont retirés, puis les chances des autres types positifs sont recalculées. Un type à zéro ne peut pas sortir.</p>
+<p>Le numéro augmente même quand une carte est passée. Après la dernière plage, <code>game.afterLastStage</code> vaut <code>"repeat-last"</code> : le dernier ratio continue. Utilisez <code>"stop"</code> pour arrêter. <code>game.maxQuestions</code> vaut <code>null</code> pour ne pas fixer d’autre limite, ou un entier pour en fixer une.</p>
+<h2 class="h4 mt-5 mb-3">04. Créer un type de carte</h2>
+<ol><li>Ajoutez un objet dans <code>categories</code> avec un <code>id</code> unique, un <code>label</code>, un <code>symbol</code>, une <code>color</code> au format <code>#RRGGBB</code> et une <code>description</code>. Choisissez une couleur claire pour garder le texte sombre lisible.</li><li>Ajoutez son identifiant dans <code>categories</code> des jeux qui doivent l’utiliser, dans <code>decks</code>.</li><li>Donnez-lui un poids dans les plages où il peut sortir.</li><li>Ajoutez des questions portant cet identifiant dans leur champ <code>category</code>.</li></ol>
+<p>Pour le couple, le PDF ne donne pas de ratio propre : les questions conservent la catégorie source <code>couple</code> et le tag <code>couple</code>. Le réglage <code>categoryMappings.couple</code> les envoie initialement vers <code>deep</code>. Vous pouvez les associer à un autre type existant. Pour créer un vrai type <code>couple</code>, retirez d’abord cet alias, puis déclarez le type, les jeux et ses poids.</p>
+<h2 class="h4 mt-5 mb-3">05. Ajouter des questions sans toucher aux originales</h2>
+<p>Le paquet supplémentaire est une source distincte. Dans l’interface, cochez ce paquet dans « Les cartes à mettre dans la pioche » pour l’activer. Pour l’activer à chaque nouvelle ouverture, changez <code>sources</code> → source <code>additional</code> → <code>defaultEnabled</code> en <code>true</code>.</p>
+<pre class="bg-body border rounded p-3"><code>{
+  "id": "ma-question-001",
+  "category": "intermediaire",
+  "text": "Votre question ici ?",
+  "tags": [],
+  "minPlayers": 2,
+  "enabled": true
+}</code></pre>
+<p>L’identifiant doit être unique dans tous les paquets, commencer par une lettre minuscule et ne contenir que lettres minuscules sans accent, chiffres, tirets ou traits de soulignement. <code>maxPlayers</code> est facultatif. Un tag présent dans <code>excludedTags</code> d’un jeu exclut la question de ce jeu.</p>
+<p>Pour un troisième paquet, créez un fichier reprenant la structure des autres, puis ajoutez une entrée dans <code>sources</code>. Son champ <code>origin</code> doit correspondre à l’<code>id</code> de cette source. <code>path</code> reste un chemin relatif vers un JSON à l’intérieur du dossier du jeu. <code>required: false</code> permet de jouer si ce paquet est absent ; un paquet obligatoire invalide arrête le chargement.</p>
+<p class="alert alert-info">Les 204 entrées originales comprennent trois formulations répétées, soit 201 formulations distinctes. Elles sont conservées dans le catalogue, mais pas répétées dans la partie par défaut. Les 20 propositions supplémentaires sont étiquetées comme ajouts et ne remplacent aucune question originale.</p>
+<h2 class="h4 mt-5 mb-3">06. Changer le tour de parole</h2>
+<div class="table-responsive mb-3"><table class="table table-bordered table-striped align-middle"><thead><tr><th>Réglage dans game</th><th>Effet</th></tr></thead><tbody>
+<tr><td><code>minPlayers</code> / <code>maxPlayers</code></td><td>Nombre de personnes autorisé, entre 2 et 20. Chaque jeu a aussi ses propres bornes.</td></tr>
+<tr><td><code>firstAsker</code></td><td><code>"first"</code> fait commencer le premier prénom ; <code>"random"</code> tire au sort la personne qui commence.</td></tr>
+<tr><td><code>targetCounts</code></td><td>Seuils croissants : <code>minPlayers: 2, count: 1</code>, puis <code>minPlayers: 4, count: 2</code> par défaut. Chaque cible est distincte et ne pose pas la question.</td></tr>
+<tr><td><code>allowAdditionalResponders</code></td><td>Autorise les autres personnes à se proposer.</td></tr>
+<tr><td><code>skipAdvancesAsker</code></td><td>Fait aussi avancer le tour lorsqu’une carte est passée si la valeur est <code>true</code>.</td></tr>
+<tr><td><code>noRepeatText</code></td><td>Empêche deux entrées de même formulation d’apparaître dans une partie. Une même entrée ne repasse jamais.</td></tr>
+</tbody></table></div>
+<p>Les textes de <code>rules.items</code> et <code>rules.howTo</code> modifient l’aide affichée. Les réglages de <code>game</code> modifient les comportements décrits ci-dessus. Écrire une nouvelle mécanique en prose ne suffit pas à l’exécuter : un comportement entièrement nouveau demanderait de modifier le moteur.</p>
+<h2 class="h4 mt-5 mb-3">07. La capsule à deux</h2>
+<p><code>closure.enabled</code> active ou désactive la capsule. <code>prompt</code> est la dernière question, <code>delayDays</code> le délai en jours, et <code>maxAnswerLength</code> la limite de caractères jusqu’à 12 000. La capsule reste réservée à deux personnes.</p>
+<p>Chaque réponse est chiffrée avec sa phrase secrète. Les textes et phrases ne sont pas envoyés à un serveur. Le navigateur conserve le texte chiffré ; exporter la capsule crée une sauvegarde JSON que l’on peut importer ailleurs. Sans phrase secrète, aucune récupération n’est prévue.</p>
+<p class="alert alert-info">Le délai utilise l’horloge de l’appareil. Sans serveur de confiance, on ne peut pas garantir qu’une personne déterminée attendra cinq jours. Le chiffrement protège les réponses sans la phrase secrète ; le calendrier reste une règle de jeu. Effacer les données du navigateur supprime les capsules non exportées.</p>
+<p>Pour tester l’ouverture, créez une capsule dans une copie locale avec <code>delayDays: 0</code>. Changer le délai plus tard ne change pas une capsule existante : sa date fait partie des métadonnées authentifiées.</p>
+<h2 class="h4 mt-5 mb-3">08. Vérifier avant de republier</h2>
+<ol><li>Gardez une copie des fichiers que vous allez modifier.</li><li>Vérifiez le JSON dans un éditeur compatible et rechargez le jeu après chaque changement.</li><li>Avec Node.js 20 ou plus, les commandes <code>npm test</code> et <code>npm run check</code> contrôlent les données et le moteur. Aucune installation npm n’est nécessaire.</li><li>Après publication, testez une partie à deux, une partie à quatre, une carte passée, une reprise après actualisation et une capsule exportée puis importée.</li></ol>
+<p>Les prénoms et la progression sont stockés localement en clair ; les réponses des capsules sont chiffrées. Une modification des règles ou des cartes invalide la progression enregistrée. Les capsules restent indépendantes. Le jeu n’ajoute pas de service worker susceptible de garder d’anciennes règles.</p>
+<p><a class="btn btn-primary" href="./index.html">Ça mérite une partie →</a></p>
+</article></div></main>
+<footer class="border-top bg-body py-3 mt-4"><div class="container d-flex flex-wrap justify-content-between gap-2 small text-body-secondary"><span>cardz · Guide de configuration</span><a href="./README.md">Documentation complète</a></div></footer>
+</body></html>

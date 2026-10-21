@@ -1,0 +1,12 @@
+/* Bootstrap supplies the layout and every visual component. */
+.field-error:empty { display: none; }
+#main:focus { outline: none; }
+.input-group > .form-control { min-width: 4rem; }
+.question-text { overflow-wrap: anywhere; }
+.answer-input { min-height: 10rem; resize: vertical; }
+.revealed-answer { white-space: pre-wrap; overflow-wrap: anywhere; }
+.notification-layer { z-index: 1090; pointer-events: none; }
+#toast { max-width: 48rem; pointer-events: auto; }
+.modal-body > .btn.w-100 + .btn.w-100 { margin-top: .75rem; }
+.guide code { overflow-wrap: anywhere; }
+.guide pre { white-space: pre; }

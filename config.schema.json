@@ -1,0 +1,450 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "cardz — configuration v1",
+  "description": "Le moteur vérifie aussi les références, seuils et contraintes entre champs.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "app": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "tagline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "intro": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "language": {
+          "const": "fr"
+        }
+      },
+      "required": [
+        "name",
+        "tagline",
+        "intro",
+        "language"
+      ],
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^(\\./)?[a-zA-Z0-9_./-]+\\.json$"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "defaultEnabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "path",
+          "required",
+          "defaultEnabled"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 10
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "symbol": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 8
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "symbol",
+          "color",
+          "description"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 24
+    },
+    "categoryMappings": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+      }
+    },
+    "decks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "eyebrow": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "symbol": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 8
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+            },
+            "minItems": 1,
+            "maxItems": 24,
+            "uniqueItems": true
+          },
+          "excludedTags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+            },
+            "minItems": 0,
+            "maxItems": 40
+          },
+          "minPlayers": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 20
+          },
+          "maxPlayers": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 20
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "eyebrow",
+          "description",
+          "symbol",
+          "categories",
+          "excludedTags",
+          "minPlayers",
+          "maxPlayers"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 20
+    },
+    "defaultDeck": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          },
+          "minItems": 1,
+          "maxItems": 30
+        },
+        "howTo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              }
+            },
+            "required": [
+              "title",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "provenance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000
+        }
+      },
+      "required": [
+        "title",
+        "items",
+        "howTo"
+      ],
+      "additionalProperties": false
+    },
+    "game": {
+      "type": "object",
+      "properties": {
+        "minPlayers": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 20
+        },
+        "maxPlayers": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 20
+        },
+        "firstAsker": {
+          "enum": [
+            "first",
+            "random"
+          ]
+        },
+        "targetCounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "minPlayers": {
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 20
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 19
+              }
+            },
+            "required": [
+              "minPlayers",
+              "count"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "allowAdditionalResponders": {
+          "type": "boolean"
+        },
+        "skipAdvancesAsker": {
+          "type": "boolean"
+        },
+        "noRepeatText": {
+          "type": "boolean"
+        },
+        "afterLastStage": {
+          "enum": [
+            "repeat-last",
+            "stop"
+          ]
+        },
+        "maxQuestions": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000
+            }
+          ]
+        }
+      },
+      "required": [
+        "minPlayers",
+        "maxPlayers",
+        "firstAsker",
+        "targetCounts",
+        "allowAdditionalResponders",
+        "skipAdvancesAsker",
+        "noRepeatText",
+        "afterLastStage",
+        "maxQuestions"
+      ],
+      "additionalProperties": false
+    },
+    "ratioStages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100000
+          },
+          "to": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100000
+          },
+          "weights": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+            },
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "minProperties": 1
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "weights"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 100
+    },
+    "closure": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "playerCount": {
+          "const": 2
+        },
+        "delayDays": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3650
+        },
+        "maxAnswerLength": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 12000
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "enabled",
+        "playerCount",
+        "delayDays",
+        "maxAnswerLength",
+        "prompt"
+      ],
+      "additionalProperties": false
+    },
+    "implementationNotes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 5000
+      },
+      "minItems": 0,
+      "maxItems": 50
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "app",
+    "sources",
+    "categories",
+    "categoryMappings",
+    "decks",
+    "defaultDeck",
+    "rules",
+    "game",
+    "ratioStages",
+    "closure"
+  ],
+  "additionalProperties": false
+}

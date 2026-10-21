@@ -1,0 +1,226 @@
+{
+  "$schema": "./config.schema.json",
+  "schemaVersion": 1,
+  "app": {
+    "name": "cardz",
+    "tagline": "De quoi se parler.",
+    "intro": "Un jeu de cartes pour laisser le quotidien de côté et se rencontrer un peu plus.",
+    "language": "fr"
+  },
+  "sources": [
+    {
+      "id": "original",
+      "label": "Le jeu original",
+      "path": "./data/questions.original.json",
+      "required": true,
+      "defaultEnabled": true
+    },
+    {
+      "id": "additional",
+      "label": "Les questions en plus",
+      "path": "./data/questions.additional.json",
+      "required": false,
+      "defaultEnabled": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "ouverture",
+      "label": "Ouverture",
+      "symbol": "✳",
+      "color": "#cfdf9b",
+      "description": "Briser la glace, simplement."
+    },
+    {
+      "id": "intermediaire",
+      "label": "Intermédiaire",
+      "symbol": "✦",
+      "color": "#f1bb9e",
+      "description": "Aller un peu plus loin."
+    },
+    {
+      "id": "deep",
+      "label": "Deep",
+      "symbol": "✷",
+      "color": "#c6bce9",
+      "description": "Prendre le temps de se dire."
+    },
+    {
+      "id": "miam",
+      "label": "Miam-miam",
+      "symbol": "♥",
+      "color": "#eba9c8",
+      "description": "Parler attirance et intimité."
+    }
+  ],
+  "categoryMappings": {
+    "couple": "deep"
+  },
+  "decks": [
+    {
+      "id": "base",
+      "label": "Entre nous",
+      "eyebrow": "LE CLASSIQUE",
+      "description": "Pour les ami·e·s, les nouvelles rencontres et les « on se connaît déjà ».",
+      "symbol": "✳",
+      "categories": [
+        "ouverture",
+        "intermediaire",
+        "deep"
+      ],
+      "excludedTags": [
+        "couple"
+      ],
+      "minPlayers": 2,
+      "maxPlayers": 20
+    },
+    {
+      "id": "miam",
+      "label": "Un peu plus…",
+      "eyebrow": "+ MIAM-MIAM",
+      "description": "Le jeu original, avec des questions d’attirance et d’intimité.",
+      "symbol": "♥",
+      "categories": [
+        "ouverture",
+        "intermediaire",
+        "deep",
+        "miam"
+      ],
+      "excludedTags": [
+        "couple"
+      ],
+      "minPlayers": 2,
+      "maxPlayers": 20
+    },
+    {
+      "id": "couple",
+      "label": "Toi & moi",
+      "eyebrow": "+ MIAM-MIAM + COUPLE",
+      "description": "À deux, pour se (re)découvrir dans la relation.",
+      "symbol": "∞",
+      "categories": [
+        "ouverture",
+        "intermediaire",
+        "deep",
+        "miam"
+      ],
+      "excludedTags": [],
+      "minPlayers": 2,
+      "maxPlayers": 2
+    }
+  ],
+  "defaultDeck": "base",
+  "rules": {
+    "title": "Une bonne conversation n’a pas de bonne réponse.",
+    "items": [
+      "Installez-vous dans l’ordre des aiguilles d’une montre et partagez un seul écran.",
+      "Ne vous prenez pas la tête, ce sont des réponses temporaires.",
+      "Si la question est peu claire, expliquez la manière dont vous la comprenez pour répondre.",
+      "N’hésitez pas à poser une question complémentaire en fonction de la réponse de l’autre.",
+      "Vous pouvez toujours passer une carte, sans vous justifier."
+    ],
+    "howTo": [
+      {
+        "title": "Une personne demande",
+        "text": "Le tour suit l’ordre des prénoms autour de la table."
+      },
+      {
+        "title": "Le hasard invite à répondre",
+        "text": "La carte indique à qui la question s’adresse. Les autres peuvent aussi se proposer."
+      },
+      {
+        "title": "Prenez votre temps",
+        "text": "Lisez à voix haute, répondez, rebondissez. Puis passez à la carte suivante."
+      }
+    ],
+    "provenance": "Les trois conseils centraux viennent du document original. L’écran partagé et le droit de passer explicitent le fonctionnement de cette version."
+  },
+  "game": {
+    "minPlayers": 2,
+    "maxPlayers": 20,
+    "firstAsker": "first",
+    "targetCounts": [
+      {
+        "minPlayers": 2,
+        "count": 1
+      },
+      {
+        "minPlayers": 4,
+        "count": 2
+      }
+    ],
+    "allowAdditionalResponders": true,
+    "skipAdvancesAsker": false,
+    "noRepeatText": true,
+    "afterLastStage": "repeat-last",
+    "maxQuestions": null
+  },
+  "ratioStages": [
+    {
+      "from": 1,
+      "to": 1,
+      "weights": {
+        "ouverture": 100,
+        "intermediaire": 0,
+        "deep": 0,
+        "miam": 0
+      }
+    },
+    {
+      "from": 2,
+      "to": 10,
+      "weights": {
+        "ouverture": 80,
+        "intermediaire": 20,
+        "deep": 0,
+        "miam": 0
+      }
+    },
+    {
+      "from": 11,
+      "to": 25,
+      "weights": {
+        "ouverture": 20,
+        "intermediaire": 70,
+        "deep": 10,
+        "miam": 0
+      }
+    },
+    {
+      "from": 26,
+      "to": 40,
+      "weights": {
+        "ouverture": 0,
+        "intermediaire": 70,
+        "deep": 20,
+        "miam": 10
+      }
+    },
+    {
+      "from": 41,
+      "to": 50,
+      "weights": {
+        "ouverture": 0,
+        "intermediaire": 30,
+        "deep": 50,
+        "miam": 20
+      }
+    }
+  ],
+  "closure": {
+    "enabled": true,
+    "playerCount": 2,
+    "delayDays": 5,
+    "maxAnswerLength": 12000,
+    "prompt": "Qu’est-ce que tu as appris sur l’autre, sur toi, qu’est-ce que tu vas retenir de ce moment ?"
+  },
+  "implementationNotes": [
+    "Le document ne précise pas le type des questions de couple : elles restent classées couple dans les données puis sont associées à deep via categoryMappings.",
+    "À trois, une personne répond ; à partir de quatre, deux personnes distinctes sont tirées au sort, sans la personne qui demande.",
+    "Après la question 50, le dernier ratio est réutilisé ; afterLastStage peut être changé en stop.",
+    "Si une catégorie n’est pas dans le jeu choisi ou est épuisée, ses chances sont réparties entre les catégories encore disponibles dont le poids est positif. Aucun type à poids zéro n’est ajouté.",
+    "Si toutes les catégories à poids positif sont épuisées, la partie propose une clôture. Les formulations identiques ne sont pas répétées même si elles existent plusieurs fois dans le PDF.",
+    "Le numéro avance à chaque carte tirée, même passée ; la personne qui demande reste la même après une carte passée par défaut.",
+    "Sans serveur, le délai de la capsule dépend de l’horloge locale et peut être contourné. Les textes sont chiffrés, pas simplement hachés."
+  ]
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f9fa">
+  <meta name="description" content="cardz : un jeu de conversation à partager, entièrement dans votre navigateur.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>cardz — De quoi se parler.</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100">
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 p-3 bg-white border z-3" href="#main">Aller au contenu</a>
+  <header class="navbar bg-body border-bottom">
+    <div class="container d-flex flex-wrap gap-2 py-2">
+      <button type="button" class="btn btn-link navbar-brand fw-bold text-body text-decoration-none me-auto mb-0" id="home-button" aria-label="cardz, accueil">cardz</button>
+      <nav class="d-flex flex-wrap gap-2" aria-label="Navigation principale">
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="rules-button" disabled>Les règles</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="cards-button" disabled>Les cartes</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="capsules-button" disabled>Les capsules</button>
+      </nav>
+    </div>
+  </header>
+  <main class="container py-4 flex-grow-1" id="main" tabindex="-1">
+    <div class="card"><div class="card-body text-center py-5" role="status">
+      <div class="spinner-border text-primary mb-3" aria-hidden="true"></div>
+      <h1 class="h3">Chargement du jeu</h1>
+      <p>Lecture des règles et des cartes…</p>
+      <p class="small text-body-secondary mb-0">Si cet écran reste affiché, ouvrez le jeu sur GitHub Pages ou avec un serveur local. L’ouverture directe du fichier HTML ne permet pas de lire les fichiers JSON.</p>
+    </div></div>
+    <noscript><p class="alert alert-danger mt-3">Activez JavaScript pour jouer. Le jeu fonctionne entièrement dans votre navigateur.</p></noscript>
+  </main>
+  <footer class="border-top bg-body py-3 mt-4">
+    <div class="container d-flex flex-wrap justify-content-between gap-2 small text-body-secondary">
+      <span>cardz · Un écran partagé · Sans compte</span>
+      <a href="./guide.html">Personnaliser le jeu</a>
+    </div>
+  </footer>
+  <div id="announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div class="position-fixed bottom-0 start-0 end-0 p-3 notification-layer">
+    <div id="toast" class="alert alert-dark shadow mx-auto mb-0" role="status" aria-live="polite" hidden></div>
+  </div>
+  <div class="modal" id="modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="modal-title">cardz</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer la fenêtre"></button>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script type="module" src="./assets/app.mjs"></script>
+</body>
+</html>
